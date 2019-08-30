@@ -41,7 +41,7 @@ def action_wrapper(hermes, intentMessage, conf):
     Refer to the documentation for further details. 
     """ 
     
-    sentence = "%d fois %d font %d" % (intentMessage.slots['FirstOperand'], intentMessage.slots['SecondOperand'], intentMessage.slots['FirstOperand']*intentMessage.slots['SecondOperand'])
+    sentence = "%d fois %d font %d" % (intentMessage.slots['FirstOperand'].first().value, intentMessage.slots['SecondOperand'].first().value, intentMessage.slots['FirstOperand'].first().value*intentMessage.slots['SecondOperand'].first().value)
 
     hermes.publish_end_session(intentMessage.session_id, sentence)
     

@@ -42,7 +42,10 @@ def action_wrapper(hermes, intentMessage, conf):
     """
     import math
 
-    sentence = "La racine carrée de %d est %.2f" % (intentMessage.slots['FirstOperand'], math.sqrt(intentMessage.slots['FirstOperand']))
+    sentence = "La racine carrée de %d est %.2f" % (intentMessage.slots['FirstOperand'].first().value, math.sqrt(intentMessage.slots['FirstOperand'].first().value))
+    
+    sentence = sentence.replace('.00', '')
+    sentence = sentence.replace('.', ' virgule ')
     
     hermes.publish_end_session(intentMessage.session_id, sentence)
     

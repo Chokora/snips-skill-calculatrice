@@ -41,8 +41,9 @@ def action_wrapper(hermes, intentMessage, conf):
     Refer to the documentation for further details. 
     """
 
-    sentence = "%d divisé par %d fait %.2f" % (intentMessage.slots['FirstOperand'], intentMessage.slots['SecondOperand'], intentMessage.slots['FirstOperand']/intentMessage.slots['SecondOperand'])
+    sentence = "%d divisé par %d fait %.2f" % (intentMessage.slots['FirstOperand'].first().value, intentMessage.slots['SecondOperand'].first().value, intentMessage.slots['FirstOperand'].first().value/intentMessage.slots['SecondOperand'].first().value)
     
+    sentence = sentence.replace('.00', '')
     sentence = sentence.replace('.', ' virgule ')
 
     hermes.publish_end_session(intentMessage.session_id, sentence)
